@@ -6,16 +6,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="learn" />
+        <module name="learn-client" />
+        <module name="learn-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="cn.ben.learn.client" target="11" />
+      <module name="cn.ben.service" target="11" />
       <module name="learn" target="11" />
+      <module name="learn-client" target="10" />
+      <module name="learn-service" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="learn" options="-parameters" />
+      <module name="cn.ben.learn.client" options="-parameters" />
+      <module name="cn.ben.service" options="-parameters" />
+      <module name="learn" options="" />
+      <module name="learn-client" options="-parameters" />
+      <module name="learn-service" options="-parameters" />
     </option>
   </component>
 </project>
