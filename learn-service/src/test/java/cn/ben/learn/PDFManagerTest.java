@@ -1,5 +1,6 @@
 package cn.ben.learn;
 
+import cn.ben.learn.provide.ChinaFontProvide;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.BaseFont;
@@ -39,10 +40,10 @@ public class PDFManagerTest {
             document.open();
             //2.open document
             document.open();
-            //3. 设置字体
+           /* //3. 设置字体
             XMLWorkerFontProvider xmlWorkerFontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
             xmlWorkerFontProvider.register(getContextPath()+FONT_PATH);
-            BaseFont font = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+            BaseFont font = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);*/
             //4. 设置模板内容
             Map<String,Object> params = new HashMap<String,Object>();
             params.put("name","ben-sir(中文)");
@@ -51,7 +52,7 @@ public class PDFManagerTest {
             String content = getFreeMarkerText(htmlContent(),params);
             //4. 文件
             InputStream inputStream = new ByteArrayInputStream(content.getBytes("utf-8"));
-            XMLWorkerHelper.getInstance().parseXHtml(writer, document,inputStream, Charset.forName("UTF-8"),xmlWorkerFontProvider);
+            XMLWorkerHelper.getInstance().parseXHtml(writer, document,inputStream, Charset.forName("UTF-8"),new ChinaFontProvide());
             //3. close document
             document.close();
         }catch (DocumentException e) {
