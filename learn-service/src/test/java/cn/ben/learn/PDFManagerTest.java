@@ -3,7 +3,8 @@ package cn.ben.learn;
 import cn.ben.learn.provide.ChinaFontProvide;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerFontProvider;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
@@ -34,19 +35,21 @@ public class PDFManagerTest {
         String name = "/"+UUID.randomUUID().toString()+".pdf";
         try{
             // 1. new Document
-            Document document = new Document();
+            Rectangle rectPageSize = new Rectangle(PageSize.A4);// A4纸张
+            Document document = new Document(rectPageSize, 80, 80, 80, 80);// 上、下、左、右间距
+
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path + name));
             // 2. 打开document
             document.open();
             //2.open document
             document.open();
-           /* //3. 设置字体
+            //3. 设置字体
             XMLWorkerFontProvider xmlWorkerFontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
-            xmlWorkerFontProvider.register(getContextPath()+FONT_PATH);
-            BaseFont font = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);*/
+           /* xmlWorkerFontProvider.register(getContextPath()+FONT_PATH);*/
+        /*    BaseFont font = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);*/
             //4. 设置模板内容
             Map<String,Object> params = new HashMap<String,Object>();
-            params.put("name","ben-sir(中文)");
+            params.put("name","(中文签名)");
             params.put("career","软件开发");
             params.put("blog","http://www.andyqian.com");
             String content = getFreeMarkerText(htmlContent(),params);

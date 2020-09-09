@@ -6,6 +6,8 @@ import com.itextpdf.text.FontProvider;
 import com.itextpdf.text.pdf.BaseFont;
 import org.springframework.stereotype.Service;
 
+import static com.itextpdf.text.Font.UNDEFINED;
+
 @Service
 public class ChinaFontProvide implements FontProvider {
     @Override
@@ -21,7 +23,7 @@ public class ChinaFontProvide implements FontProvider {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Font FontChinese = new Font(bfChinese, size, style);
+        Font FontChinese = new Font(bfChinese, 8, Font.getStyleValue(Font.FontStyle.ITALIC.getValue()));
         return FontChinese;
     }
 }
