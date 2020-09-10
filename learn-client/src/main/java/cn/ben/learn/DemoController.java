@@ -8,4 +8,7 @@ public interface DemoController {
 
     @GetMapping("/test")
     public String testDemo();
+
+    @GetMapping("/test/pdf")
+    public void testPDFManager();
 }

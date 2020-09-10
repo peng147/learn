@@ -1,5 +1,6 @@
 package cn.ben.learn;
 
+import cn.ben.learn.manager.PDFManager;
 import cn.ben.learn.provide.ChinaFontProvide;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -36,7 +37,7 @@ public class PDFManagerTest {
         try{
             // 1. new Document
             Rectangle rectPageSize = new Rectangle(PageSize.A4);// A4纸张
-            Document document = new Document(rectPageSize, 80, 80, 80, 80);// 上、下、左、右间距
+            Document document = new Document(rectPageSize, 40, 40, 40, 40);// 上、下、左、右间距
 
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path + name));
             // 2. 打开document
@@ -51,7 +52,7 @@ public class PDFManagerTest {
             Map<String,Object> params = new HashMap<String,Object>();
             params.put("name","(中文签名)");
             params.put("career","软件开发");
-            params.put("blog","http://www.andyqian.com");
+            params.put("blog","微博链接 www.qidian.com");
             String content = getFreeMarkerText(htmlContent(),params);
             //4. 文件
             InputStream inputStream = new ByteArrayInputStream(content.getBytes("utf-8"));
@@ -194,7 +195,8 @@ public class PDFManagerTest {
     private String htmlContent(){
         String result = "";
         try {
-            FileInputStream fileInputStream = new FileInputStream("/Users/ben.liu/IdeaProjects/ben/learn/learn-service/src/main/resources/template.html");
+            URL url = PDFManager.class.getClassLoader().getResource("template.html");
+            FileInputStream fileInputStream = new FileInputStream(url.getPath());
             int len=0;
             byte[] array = new byte[1024];
             StringBuffer stringBuffer = new StringBuffer();
@@ -207,4 +209,31 @@ public class PDFManagerTest {
         }
         return result;
     }
+
+    @Test
+    public void testUrl() throws Exception {
+        URL resource = PDFManager.class.getResource("../template.html");
+        showContent(resource);
+    }
+
+    public void showContent(URL url) throws Exception
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                url.openStream()));
+
+        StringBuilder contentHolder = new StringBuilder();
+
+        String lineContent = null;
+
+        while ((lineContent = br.readLine()) != null)
+        {
+            contentHolder.append(lineContent);
+        }
+
+        br.close();
+
+        System.out.println("content=" + contentHolder);
+
+    }
+
 }

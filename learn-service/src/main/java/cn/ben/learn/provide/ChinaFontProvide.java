@@ -6,8 +6,6 @@ import com.itextpdf.text.FontProvider;
 import com.itextpdf.text.pdf.BaseFont;
 import org.springframework.stereotype.Service;
 
-import static com.itextpdf.text.Font.UNDEFINED;
-
 @Service
 public class ChinaFontProvide implements FontProvider {
     @Override
