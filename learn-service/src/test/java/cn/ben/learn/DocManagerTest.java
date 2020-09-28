@@ -28,6 +28,12 @@ public class DocManagerTest {
         params.put("name","(中文签名)");
         params.put("career","软件开发");
         params.put("blog","微博链接 www.qidian.com");
+        params.put("A01","2020年9月29日");
+        params.put("A02","甲方名称");
+        params.put("A03","注册地址");
+        params.put("A09","齐天大圣");
+        params.put("A90",3);
+        params.put("payment",2);
         String content = getFreeMarkerText(htmlContent(),params);
         byte b[] = content.getBytes();
         ByteArrayInputStream bais = new ByteArrayInputStream(b);
@@ -65,7 +71,7 @@ public class DocManagerTest {
     private String htmlContent() {
         String result = "";
         try {
-            URL url = PDFManager.class.getClassLoader().getResource("template.html");
+            URL url = PDFManager.class.getClassLoader().getResource("template2.html");
             FileInputStream fileInputStream = new FileInputStream(url.getPath());
             int len = 0;
             byte[] array = new byte[1024];

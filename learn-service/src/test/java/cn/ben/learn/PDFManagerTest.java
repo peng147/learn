@@ -52,6 +52,7 @@ public class PDFManagerTest {
             Map<String,Object> params = new HashMap<String,Object>();
             params.put("name","(中文签名)");
             params.put("career","软件开发");
+            params.put("hello","world");
             params.put("blog","微博链接 www.qidian.com");
             String content = getFreeMarkerText(htmlContent(),params);
             //4. 文件

@@ -1,5 +1,7 @@
 package cn.ben.learn.manager;
 
+import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xwpf.converter.pdf.PdfConverter;
 import org.apache.poi.xwpf.converter.pdf.PdfOptions;
@@ -10,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 public class WordToPDF {
 
     /**
@@ -58,6 +61,7 @@ public class WordToPDF {
                         r.setText(params.get(content), 0);
                     }
                 }
+                log.info("WordToPDF.paragraphReplace XWPFParagraph:{}", JSON.toJSONString(p));
             }
         }
     }

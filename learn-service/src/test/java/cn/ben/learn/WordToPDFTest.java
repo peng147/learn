@@ -17,8 +17,8 @@ public class WordToPDFTest {
 
     @Test
     public void test(){
-        String filepath = "/Users/ben.liu/Desktop/test/3.docx";
-        String outpath = "/Users/ben.liu/Desktop/test/3.pdf";
+        String filepath = "/Users/ben.liu/Desktop/test/1.doc";
+        String outpath = "/Users/ben.liu/Desktop/test/1.pdf";
 
         InputStream source;
         OutputStream target;
@@ -26,6 +26,7 @@ public class WordToPDFTest {
             source = new FileInputStream(filepath);
             target = new FileOutputStream(outpath);
             Map<String, String> params = new HashMap<String, String>();
+            params.put("R1","我猜可以展示");
             PdfOptions options = PdfOptions.create().fontProvider(new CNFontProvide());
             wordConverterToPdf(source, target, options, params);
         } catch (FileNotFoundException e) {
